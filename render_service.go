@@ -21,7 +21,7 @@ func (s *RenderService) Render(ctx context.Context, r RenderRequest) (RenderResu
 	}
 	out, e := s.gateway.Render(ctx, clip, r)
 	if e != nil {
-		return RenderResult{}, fmt.Errorf("rendering clip %s failed: %v", r.ClipID, e)
+		return RenderResult{}, fmt.Errorf("rendering clip %s failed: %w", r.ClipID, e)
 	}
 	if e = s.clips.MarkRendered(ctx, r.ClipID); e != nil {
 		return RenderResult{}, e
